@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+  database:
+    container_name: flats_db
+    image: postgres:14.2-alpine
+    environment:
+      - POSTGRES_DB=flats
+      - POSTGRES_PASSWORD=flats
+    volumes:
+      - database-storage:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  admin:
+    container_name: flats_admin
+    image: adminer:4.8.1
+    ports:
+      - "8089:8080"
+
+volumes:
+  database-storage:
