@@ -7,7 +7,7 @@ def get_flats():
     conn = None
     try:
         conn = psycopg2.connect(
-            host="localhost",
+            host="database",
             database="flats",
             user="postgres",
             password="flats")
@@ -40,10 +40,11 @@ class MyServer(BaseHTTPRequestHandler):
         self.wfile.write(bytes("</body></html>", "utf-8"))
 
 if __name__ == "__main__":
-    webServer = HTTPServer(("localhost", 8080), MyServer)
+    webServer = HTTPServer(("app", 8080), MyServer)
 
     try:
         webServer.serve_forever()
+
     except KeyboardInterrupt:
         pass
 
