@@ -12,11 +12,18 @@ services:
     ports:
       - "5432:5432"
 
-  admin:
-    container_name: flats_admin
-    image: adminer:4.8.1
+  # admin:
+  #   container_name: flats_admin
+  #   image: adminer:4.8.1
+  #   ports:
+  #     - "8089:8080"
+
+  app:
+    container_name: flats_app
+    image: flats_app:1.0.0
+    build: ./app
     ports:
-      - "8089:8080"
+      - "8080:8080"
 
 volumes:
   database-storage:
