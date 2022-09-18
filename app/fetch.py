@@ -3,7 +3,7 @@ import json
 import psycopg2
 
 def fetch_data():
-    flats_json = urlopen('https://www.sreality.cz/api/cs/v2/estates?category_main_cb=1&category_type_cb=1&per_page=5000&tms=1663433765480')
+    flats_json = urlopen('https://www.sreality.cz/api/cs/v2/estates?category_main_cb=1&category_type_cb=1&per_page=500&tms=1663433765480')
     flats = json.loads(flats_json.read().decode("utf-8"))
 
     flats_db = []
@@ -23,7 +23,7 @@ def connect_create_fill(flats_db):
     conn = None
     try:
         conn = psycopg2.connect(
-            host="localhost",
+            host="database",
             database="flats",
             user="postgres",
             password="flats")
